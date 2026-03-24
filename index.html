@@ -285,14 +285,21 @@ button { font-family: inherit; cursor: pointer; }
 }
 
 .hero-title {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  line-height: 1;
+  opacity: 0;
+  animation: fade-up 0.9s 0.8s var(--ease) forwards;
+}
+.hero-title .split {
   font-family: var(--font-serif);
   font-weight: 900;
   font-size: clamp(60px, 11vw, 150px);
-  line-height: 1;
   letter-spacing: -0.03em;
   color: #d4a853;
-  opacity: 0;
-  animation: fade-up 0.9s 0.8s var(--ease) forwards;
+  will-change: transform;
+  display: inline-block;
 }
 
 .hero-en {
@@ -413,14 +420,23 @@ button { font-family: inherit; cursor: pointer; }
   font-weight: 400;
   line-height: 1.65;
   letter-spacing: -0.02em;
-  color: var(--text-body);
   max-width: 820px;
   margin: 0 auto;
 }
-.statement-text em {
-  font-style: normal;
-  color: var(--text-dark);
+.statement-text .ch {
+  display: inline-block;
+  color: var(--text-muted);
+  transition: color 0.4s var(--ease), transform 0.4s var(--ease);
+  will-change: transform;
+}
+.statement-text .ch.vis {
+  color: var(--text-body);
+}
+.statement-text .ch.em {
   font-weight: 700;
+}
+.statement-text .ch.em.vis {
+  color: var(--text-dark);
 }
 .statement-author {
   font-family: var(--font-mono);
@@ -1066,12 +1082,10 @@ button { font-family: inherit; cursor: pointer; }
 </nav>
 
 <!-- ═══════════ HERO ═══════════ -->
-<section class="hero">
-  <div class="hero-badge">
-    <span class="dot"></span>
-    马来西亚首家抖音官方授权直播机构
-  </div>
-  <h1 class="hero-title">拾光星域</h1>
+<section class="hero" id="heroSection">
+  <h1 class="hero-title">
+    <span class="split" id="splitL">拾光</span><span class="split" id="splitR">星域</span>
+  </h1>
   <p class="hero-en">Shiguang Xingyu &middot; Zocco Group</p>
   <p class="hero-desc">短视频直播电商与IP孵化赋能平台<br>以创新赋能内容创作者，共建直播新生态</p>
   <div class="hero-actions">
@@ -1087,10 +1101,7 @@ button { font-family: inherit; cursor: pointer; }
 <!-- ═══════════ STATEMENT ═══════════ -->
 <section class="statement">
   <div class="container">
-    <p class="statement-text" data-reveal>
-      直播不是卖产品，而是<em>传递信任</em>。<br>
-      我们更重视影响力的<em>可持续性</em>，而非一时的流量爆发。
-    </p>
+    <p class="statement-text" id="stmtText" data-reveal></p>
     <p class="statement-author d1" data-reveal>&mdash; Dr. Kervis 苏才育，创办人</p>
   </div>
 </section>
@@ -1440,6 +1451,76 @@ button { font-family: inherit; cursor: pointer; }
     });
   }, {threshold: 0.5});
   nums.forEach(function(el){ obs.observe(el); });
+})();
+
+/* Hero split text on scroll */
+(function(){
+  var sec = document.getElementById('heroSection');
+  var L = document.getElementById('splitL');
+  var R = document.getElementById('splitR');
+  if(!sec||!L||!R) return;
+
+  window.addEventListener('scroll', function(){
+    // p = 0 at top, 1 when hero bottom hits viewport top
+    var rect = sec.getBoundingClientRect();
+    var p = Math.max(0, Math.min(1, -rect.top / (sec.offsetHeight * 0.6)));
+
+    var tx = p * 320;
+    var sc = 1 - p * 0.5;
+    L.style.transform = 'translateX('+(-tx)+'px) scale('+sc+')';
+    R.style.transform = 'translateX('+tx+'px) scale('+sc+')';
+  }, {passive:true});
+})();
+
+/* Statement character-by-character reveal */
+(function(){
+  var el = document.getElementById('stmtText');
+  if(!el) return;
+
+  // define text with emphasis markers
+  var parts = [
+    {t:'直播不是卖产品，而是', em:false},
+    {t:'传递信任', em:true},
+    {t:'。', em:false},
+    {t:'\n', em:false},
+    {t:'我们更重视影响力的', em:false},
+    {t:'可持续性', em:true},
+    {t:'，而非一时的流量爆发。', em:false}
+  ];
+
+  var spans = [];
+  parts.forEach(function(part){
+    if(part.t === '\n'){
+      el.appendChild(document.createElement('br'));
+      return;
+    }
+    for(var i=0;i<part.t.length;i++){
+      var s = document.createElement('span');
+      s.className = 'ch' + (part.em ? ' em' : '');
+      s.textContent = part.t[i];
+      el.appendChild(s);
+      spans.push(s);
+    }
+  });
+
+  // scroll-driven: reveal characters based on scroll position within section
+  function onScroll(){
+    var rect = el.getBoundingClientRect();
+    var vh = window.innerHeight;
+    // progress: 0 when element enters bottom, 1 when it reaches center
+    var p = Math.max(0, Math.min(1, (vh - rect.top) / (vh * 0.6)));
+    var revealCount = Math.floor(p * spans.length);
+
+    for(var i=0;i<spans.length;i++){
+      if(i < revealCount){
+        spans[i].classList.add('vis');
+      } else {
+        spans[i].classList.remove('vis');
+      }
+    }
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
 })();
 
 /* Smooth scroll */
