@@ -137,7 +137,7 @@ button { font-family: inherit; cursor: pointer; }
   display: flex;
   align-items: center;
   gap: 4px;
-  padding: 6px 8px;
+  padding: 16px 24px;
   background: rgba(12, 12, 30, 0.55);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
@@ -158,12 +158,13 @@ button { font-family: inherit; cursor: pointer; }
 }
 
 .nav-brand {
-  font-family: var(--font-serif);
-  font-size: 15px;
-  font-weight: 700;
-  letter-spacing: -0.02em;
   padding: 0 14px;
-  white-space: nowrap;
+  display: flex;
+  align-items: center;
+}
+.nav-logo {
+  height: 84px;
+  width: auto;
 }
 .nav-links {
   display: flex;
@@ -1069,7 +1070,7 @@ button { font-family: inherit; cursor: pointer; }
 
 <!-- ═══════════ NAVIGATION ═══════════ -->
 <nav class="nav" id="nav">
-  <span class="nav-brand">星域集团</span>
+  <a href="#" class="nav-brand"><img src="logo-white.png" alt="星域集团" class="nav-logo"></a>
   <div class="nav-links">
     <a href="#work" class="nav-link">业务</a>
     <a href="#about" class="nav-link">关于</a>
