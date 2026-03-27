@@ -681,7 +681,19 @@ button { font-family: inherit; cursor: pointer; }
   transition: transform 0.5s var(--ease);
 }
 .service-lg:hover { transform: translateY(-3px); }
-/* icons removed */
+
+/* Card images */
+.service-lg.card-tech,
+.service-lg.card-growth {
+  background-size: cover;
+  background-position: center;
+}
+.service-lg.card-tech {
+  background-image: linear-gradient(to top, rgba(0,0,0,0.75) 30%, rgba(0,0,0,0.15) 100%), url('img/card-tech.png');
+}
+.service-lg.card-growth {
+  background-image: linear-gradient(to top, rgba(0,0,0,0.75) 30%, rgba(0,0,0,0.15) 100%), url('img/card-growth.png');
+}
 .service-lg h3 {
   font-family: var(--font-serif);
   font-size: clamp(24px, 2.8vw, 36px);
@@ -1091,7 +1103,7 @@ button { font-family: inherit; cursor: pointer; }
 
 <!-- ═══════════ NAVIGATION ═══════════ -->
 <nav class="nav" id="nav">
-  <a href="#" class="nav-brand"><img src="logo-white.png" alt="星域集团" class="nav-logo"></a>
+  <a href="#" class="nav-brand"><img src="img/logo-white.png" alt="星域集团" style="height:60px;width:auto;display:block;"></a>
   <div class="nav-links">
     <a href="#work" class="nav-link">业务</a>
     <a href="#about" class="nav-link">关于</a>
@@ -1134,26 +1146,26 @@ button { font-family: inherit; cursor: pointer; }
     <div class="jump-grid">
       <a href="#work" class="jump-card" data-reveal>
         <span class="jump-card-num">01</span>
-        <h3>MCN直播与内容电商</h3>
-        <p>主播孵化体系与直播变现模型，打造内容驱动的商业闭环</p>
+        <h3>AJEndless</h3>
+        <p>XYG 星域集团旗下品牌与娱乐生态</p>
         <span class="learn">了解更多 &rarr;</span>
       </a>
       <a href="#work" class="jump-card d1" data-reveal>
         <span class="jump-card-num">02</span>
-        <h3>AI企业解决方案</h3>
-        <p>为企业提供AI工具，提升效率与营收能力</p>
+        <h3>QIAI</h3>
+        <p>首个AI企业智能体平台</p>
         <span class="learn">了解更多 &rarr;</span>
       </a>
       <a href="#work" class="jump-card d2" data-reveal>
         <span class="jump-card-num">03</span>
-        <h3>AI音乐与娱乐生态</h3>
-        <p>AI内容生成与数字娱乐系统，打造新型消费体验</p>
+        <h3>Bello</h3>
+        <p>全球首创寻宝营销平台</p>
         <span class="learn">了解更多 &rarr;</span>
       </a>
       <a href="#work" class="jump-card d3" data-reveal>
         <span class="jump-card-num">04</span>
-        <h3>商业增长引擎</h3>
-        <p>流量、内容与技术结合，为个人与企业提供完整变现方案</p>
+        <h3>Jshare</h3>
+        <p>一站式解决方案，零成本获客</p>
         <span class="learn">了解更多 &rarr;</span>
       </a>
     </div>
@@ -1170,38 +1182,38 @@ button { font-family: inherit; cursor: pointer; }
 
     <div class="case-cards">
       <div class="case-card" data-reveal>
-        <div class="case-card-bg case-grad-1"></div>
+        <div class="case-card-bg" style="background:url('img/ajendless.jpg') center/cover no-repeat;"></div>
         <div class="case-card-content">
-          <p class="case-card-label">Business 01</p>
-          <h3 class="case-card-title">MCN直播与内容电商</h3>
-          <p class="case-card-desc">打造主播孵化体系与直播变现模型，从零基础培训到品牌合作对接，构建内容驱动的商业闭环。</p>
+          <p class="case-card-label">XYG &times; AJEndless</p>
+          <h3 class="case-card-title">AJEndless</h3>
+          <p class="case-card-desc">星域集团旗下品牌与娱乐生态，连接创意、青年文化与新世代内容创作者。</p>
         </div>
       </div>
 
       <div class="case-card" data-reveal>
-        <div class="case-card-bg case-grad-2"></div>
+        <div class="case-card-bg" style="background:url('img/qiai.jpg') center/cover no-repeat;"></div>
         <div class="case-card-content">
-          <p class="case-card-label">Business 02</p>
-          <h3 class="case-card-title">AI企业解决方案</h3>
-          <p class="case-card-desc">AI客服、AI培训、AI商业工具——帮助企业降低运营成本、提升效率与营收能力，驱动数字化转型。</p>
+          <p class="case-card-label">XYG &times; QIAI</p>
+          <h3 class="case-card-title">QIAI</h3>
+          <p class="case-card-desc">首个AI企业智能体平台——AI客服、AI培训、AI商业工具，帮助企业降低运营成本、提升效率与营收能力。</p>
         </div>
       </div>
 
       <div class="case-card" data-reveal>
-        <div class="case-card-bg case-grad-3"></div>
+        <div class="case-card-bg" style="background:url('img/bello.jpg') center/cover no-repeat;"></div>
         <div class="case-card-content">
-          <p class="case-card-label">Business 03</p>
-          <h3 class="case-card-title">AI音乐与娱乐生态</h3>
-          <p class="case-card-desc">通过AI内容生成系统、数字艺人与IP合作，打造可规模化的娱乐内容资产与新型消费体验。</p>
+          <p class="case-card-label">XYG &times; Bello</p>
+          <h3 class="case-card-title">Bello</h3>
+          <p class="case-card-desc">全球首创寻宝营销平台——通过游戏化互动体验，打造可规模化的新型消费与营销模式。</p>
         </div>
       </div>
 
       <div class="case-card" data-reveal>
-        <div class="case-card-bg case-grad-4"></div>
+        <div class="case-card-bg" style="background:url('img/jshare.jpg') center/cover no-repeat;"></div>
         <div class="case-card-content">
-          <p class="case-card-label">Business 04</p>
-          <h3 class="case-card-title">商业增长引擎</h3>
-          <p class="case-card-desc">结合流量、内容与技术，为个人创作者与企业品牌提供完整的「内容 &rarr; 转化 &rarr; 变现」方案。</p>
+          <p class="case-card-label">XYG &times; Jshare</p>
+          <h3 class="case-card-title">Jshare</h3>
+          <p class="case-card-desc">把顾客变成你的广告工具——不用找网红、不用给广告费，一站式解决方案实现零成本获客。</p>
         </div>
       </div>
     </div>
@@ -1213,11 +1225,11 @@ button { font-family: inherit; cursor: pointer; }
   <div class="container">
     <p class="label label-light" data-reveal>核心逻辑</p>
     <div class="services-grid">
-      <div class="service-lg" data-reveal>
+      <div class="service-lg card-tech" data-reveal>
         <h3>科技驱动的<br>商业生态系统</h3>
         <p>把「流量 &times; 内容 &times; AI &times; 商业」整合成一套可复制的增长系统。让每个人都能成为创业者，让每个企业都能变得更好。</p>
       </div>
-      <div class="service-lg d1" data-reveal>
+      <div class="service-lg card-growth d1" data-reveal>
         <h3>人才与商业<br>共生繁荣</h3>
         <p>提供直播与内容变现机会，构建系统化人才孵化机制，赋能企业进行AI转型——实现个人与企业的双重增长。</p>
       </div>
@@ -1353,7 +1365,7 @@ button { font-family: inherit; cursor: pointer; }
 
     <div class="events-grid">
       <div class="event-card" data-reveal>
-        <div class="event-visual ev-grad-1"></div>
+        <div class="event-visual" style="background:url('img/event-gala.jpg') center/cover no-repeat;"></div>
         <div class="event-body">
           <p class="event-date">2025.10.05</p>
           <h3>星耀之夜 &middot; 拾光启幕盛典</h3>
@@ -1362,7 +1374,7 @@ button { font-family: inherit; cursor: pointer; }
         </div>
       </div>
       <div class="event-card d1" data-reveal>
-        <div class="event-visual ev-grad-2"></div>
+        <div class="event-visual" style="background:url('img/event-summit.jpg') center 30%/cover no-repeat;"></div>
         <div class="event-body">
           <p class="event-date">2025.08.26</p>
           <h3>i-DATO &times; 拾光星域 SummitExchange 1.0</h3>
